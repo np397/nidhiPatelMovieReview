@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IS219 Gallery (Project 3)</title>
+
+	<!-- Our CSS File along with Boostrap Styles, and FontAwesome Styles-->
+	<link rel="stylesheet" type='text/css' href="css/style.css"/>
+	<link rel="stylesheet" type='text/css' href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type='text/css' href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+
+
+	<!-- DO NOT CHANGE ANYTHING ABOVE THIS LINE-->
+
+	<!-- Angular (ADD HERE) -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	
+</head>
+
+  <body ng-app="IS219Gallery" ng-controller="HomeController">
+	  
+    <div class="header">
+	    
+      <div class="container">
+        <h1 id="app_title">{{title}}</h1>
+      </div>
+      
+    </div>
+
+    <div class="main">
+      
+      <div class="container">
+
+        <div class="col-md-6" id="col"> 
+            <div class="thumbnail"  id="content"  ng-repeat="movie in movies">
+
+					<img class="poster" ng-src="{{movie.posters[movie.posterindex]}}" ng-click="posterClick($index)"/>
+					<div class="imageInfo"><p>Poster {{movie.posterindex + 1}}</i> of {{movie.posters.length}}</p></div>
+					
+					<p class="title">{{movie.title}} ({{movie.country}})</p> 
+					<p class="score"><i class="fa fa-star" aria-hidden="true"></i> {{movie.iscore}} </p>
+					<p class="runtime">Runtime:<i ng-bind="timeText(movie.runtime)"></i></p> 
+					<p class="released">Released: {{movie.released |  date : "MMM dd, y" }} | Rated: {{movie.rating}}</p>
+					<p class="websites">Websites:  <a target="_blank" ng-href="{{movie.imdb}}">IMDB</a> | <a target="_blank" ng-href="{{movie.website}}">Official</a></p>
+					
+		            <div class="social">
+		              <p class="likes"  ng-click="like($index)"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{movie.likes}}</p>
+		              <p class="dislikes" ng-click="dislike($index)"><i class="fa fa-thumbs-down" aria-hidden="true"></i> {{movie.dislikes}}</p>
+		            </div>
+            </div> 
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+		<a id="github" class="btn btn-lg btn-warning"  target="_blank" ng-href="{{github}}">
+			<i class="fa fa-lg fa-github pull-left" aria-hidden="true"></i> {{owner}}
+  		</a>
+      </div>
+    </div>
+
+  
+  	<!-- Modules -->
+	<script type="text/javascript" src="js/app.js"></script>
+	 
+	<!-- Controllers -->
+	<script type="text/javascript" src="js/controllers/HomeController.js"></script>
+	 
+	<!-- Services -->
+  
+</body>
+</html>
